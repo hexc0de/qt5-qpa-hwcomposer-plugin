@@ -225,26 +225,35 @@ HwComposerScreenInfo::HwComposerScreenInfo()
     HwComposerScreenInfoFallbackSource fallbackSource;
 
     if (envSource.hasScreenSize()) {
+        qDebug() << "m_screenSize: envSource.hasScreenSize";
         m_screenSize = envSource.screenSize();
     } else if (fbdevSource.isValid()) {
+        qDebug() << "m_screenSize: fbdevSource.isValid";
         m_screenSize = fbdevSource.screenSize();
     } else {
+        qDebug() << "m_screenSize: fallbackSource";
         m_screenSize = fallbackSource.screenSize();
     }
 
     if (envSource.hasPhysicalScreenSize()) {
+        qDebug() << "m_physicalScreenSize: envSource.hasPhysicalScreenSize";
         m_physicalScreenSize = envSource.physicalScreenSize();
     } else if (fbdevSource.isValid()) {
+        qDebug() << "m_physicalScreenSize: fbdevSource.isValid";
         m_physicalScreenSize = fbdevSource.physicalScreenSize();
     } else {
+        qDebug() << "m_physicalScreenSize: fallbackSource";
         m_physicalScreenSize = fallbackSource.physicalScreenSize(m_screenSize);
     }
 
     if (envSource.hasScreenDepth()) {
+        qDebug() << "m_screenDepth: envSource.hasScreenDepth";
         m_screenDepth = envSource.screenDepth();
     } else if (fbdevSource.isValid()) {
+        qDebug() << "m_screenDepth: fbdevSource.isValid";
         m_screenDepth = fbdevSource.screenDepth();
     } else {
+        qDebug() << "m_screenDepth: fallbackSource";
         m_screenDepth = fallbackSource.screenDepth();
     }
 
