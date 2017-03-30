@@ -63,16 +63,20 @@ HwComposerBackend::create()
     hw_module_t *hwc_module = NULL;
     hw_device_t *hwc_device = NULL;
 
+    qDebug() << "HwComposerBackend::create: 1"; 
     // Some implementations insist on having the framebuffer module opened before loading
     // the hardware composer one. Therefor we rely on using the fbdev HYBRIS_EGLPLATFORM
     // here and use eglGetDisplay to initialize it.
     if (qEnvironmentVariableIsEmpty("QT_QPA_NO_FRAMEBUFFER_FIRST")) {
+        qDebug() << "HwComposerBackend::create: 2"; 
 	    eglGetDisplay(EGL_DEFAULT_DISPLAY);
     }
 
+    qDebug() << "HwComposerBackend::create: 3"; 
     // Open hardware composer
     HWC_PLUGIN_ASSERT_ZERO(hw_get_module(HWC_HARDWARE_MODULE_ID, (const hw_module_t **)(&hwc_module)));
 
+    qDebug() << "HwComposerBackend::create: 4 -- hwcomposer module =="; 
     fprintf(stderr, "== hwcomposer module ==\n");
     fprintf(stderr, " * Address: %p\n", hwc_module);
     fprintf(stderr, " * Module API Version: %x\n", hwc_module->module_api_version);
