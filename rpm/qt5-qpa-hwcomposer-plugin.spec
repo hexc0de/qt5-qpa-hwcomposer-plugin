@@ -1,9 +1,6 @@
 Name:       qt5-qpa-hwcomposer-plugin
 Summary:    Qt 5 QPA hwcomposer plugin
-Version:    5.6.2.1
-# The following two lines can be removed after next stop release.
-Provides:   qt5-qpa-hwcomposer-plugin-sbj >= %{version}
-Obsoletes:  qt5-qpa-hwcomposer-plugin-sbj < %{version}
+Version:    5.1.0.2
 Release:    1
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
@@ -12,7 +9,7 @@ Source0:    %{name}-%{version}.tar.bz2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Gui)
 BuildRequires:  pkgconfig(Qt5DBus)
-BuildRequires:  qt5-qtplatformsupport-devel >= 5.6.0
+BuildRequires:  pkgconfig(Qt5PlatformSupport)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(glesv2)
 BuildRequires:  pkgconfig(wayland-egl)
@@ -40,8 +37,7 @@ hwcomposer for composing content onto the screen.
 %build
 export QTDIR=/usr/share/qt5
 cd hwcomposer
-# Qt is built with mesa, which has gl3.h. We're built with hybris which doesn't include gl3.h, so explicitly disable es3
-%qmake5 DEFINES+=QT_NO_OPENGL_ES_3
+%qmake5
 make %{_smp_mflags}
 
 %install
@@ -51,7 +47,6 @@ cd hwcomposer
 
 # doesn't exist on Qt 5.1, we don't currently care about this for 5.2
 rm -f %{buildroot}/usr/lib/cmake/Qt5Gui/Qt5Gui_QEglFSIntegrationPlugin.cmake
-rm -f %{buildroot}/usr/lib/cmake/Qt5Gui/Qt5Gui_QEglFShwcIntegrationPlugin.cmake
 
 %files
 %defattr(-,root,root,-)

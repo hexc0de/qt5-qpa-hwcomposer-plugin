@@ -1,7 +1,7 @@
 TARGET = hwcomposer
 
 PLUGIN_TYPE = platforms
-PLUGIN_CLASS_NAME = QEglFShwcIntegrationPlugin
+PLUGIN_CLASS_NAME = QEglFSIntegrationPlugin
 load(qt_plugin)
 
 INCLUDEPATH += .
@@ -28,10 +28,9 @@ SOURCES += hwcomposer_backend_v11.cpp
 HEADERS += hwcomposer_backend_v11.h
 
 
-QT += core-private compositor-private gui-private platformsupport-private dbus
+QT += core-private compositor-private gui-private platformsupport-private
 
 DEFINES += QEGL_EXTRA_DEBUG
-DEFINES += QCOM_BSP
 CONFIG += egl qpa/genericunixfontdatabase
 
 CONFIG += link_pkgconfig
@@ -58,12 +57,14 @@ SOURCES +=  $$PWD/qeglfsintegration.cpp \
             $$PWD/qeglfswindow.cpp \
             $$PWD/qeglfsbackingstore.cpp \
             $$PWD/qeglfsscreen.cpp \
-            $$PWD/qeglfscontext.cpp
+            $$PWD/qeglfscontext.cpp \
+            $$PWD/qeglfspageflipper.cpp
 
 HEADERS +=  $$PWD/qeglfsintegration.h \
             $$PWD/qeglfswindow.h \
             $$PWD/qeglfsbackingstore.h \
             $$PWD/qeglfsscreen.h \
-            $$PWD/qeglfscontext.h
+            $$PWD/qeglfscontext.h \
+            $$PWD/qeglfspageflipper.h
 
 QMAKE_LFLAGS += $$QMAKE_LFLAGS_NOUNDEF
